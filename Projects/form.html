@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validating form Using RegExp</title>
+    <script src="form.js" defer></script>
+    <style>
+       
+        body{
+            font-family: 'Arial Narrow Bold', sans-serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+
+        }
+        .form-group{
+            margin-bottom:15px;
+        }
+        label{
+            display:block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .error{
+            color:red;
+            font-size: 14px;
+            margin-top: 5px;
+            display:none;
+        }
+
+        input{
+            width:100%;
+            padding:8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button{
+            padding:10px 15px;
+            background-color: rgb(30, 13, 181);
+            color: white;
+            border:none;
+            border-radius:4px;
+            cursor:pointer;
+        }
+        input.invalid{
+            border-color: red;
+        }
+        .success-message{
+            color:green;
+            font-weight: bold;
+            margin-top: 15px;
+            display:none;
+        };
+
+        
+    </style>
+</head>
+<body>
+    <h1> Form Validation with RegEx</h1>
+    <p> This form demostrates different types of form validation using Regular Expression</p>
+
+    <form id="validateForm">
+        <!-- Name Field-->
+            <div class="form-group">
+                <label for="name">Name (Letters Only)</label>
+                <input type="text" id="name" name="name">
+                <div class="error" id="nameError"> Name must contain Letter and Spaces</div>
+            </div>
+
+            <!-- Username Field -->
+            <div class="form-group">
+                <label for="username">Username(Letters, numbers, underscore):</label>
+                <input type="text" id="username" name="username">
+                <div class="error" id="usernameError"> Username must 4-16 characters and contain Letters, Numbers and Underscore</div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email">
+                <div class="error" id="emailError"> Please enter valid email address </div>
+            </div>
+
+            <!-- Phone Number Field -->
+            <div class="form-group">
+                <label for="phone">Phone Number: (XXX-XXX-XXXX)</label>
+                <input type="text" id="phone" name="phone">
+                <div class="error" id="phoneError"> Please Enter valid phone number in XXX-XXX-XXXX format</div>
+            </div>
+
+            <!-- PASswrod Field -->
+            <div class="form-group">
+                <label for="password">Password:(min 8 chars, 1 uppercase , 1 lowercase, 1 number)</label>
+                <input type="password" id="password" name="password">
+                <div class="error" id="passwordError"> Password must be at least 8 characters with 1 uppercase, 1 lowercase, and 1 number</div>
+            </div>
+
+            <!-- Url Field -->
+            <div class="form-group">
+                <label for="url">Website URL:</label>
+                <input type="text" id="url" name="url">
+                <div class="error" id="urlError"> Please enter valid URL(must start with https://)</div>
+            </div>
+
+            <!-- Zipcode -->
+            <div class="form-group">
+                <label for="zipcode">Zipcode: (5 digits)</label>
+                <input type="text" id="zipcode" name="zipcode">
+                <div class="error" id="zipcodeError"> Please enter valid 5 digits zipcode</div>
+            </div>
+
+            <!-- Data Field -->
+            <div class="form-group">
+                <label for="date">Date:(MM-DD-YYYY)</label>
+                <input type="text" id="date" name="date">
+                <div class="error" id="dateError"> Please enter valid date in MM-DD-YYYY format</div>
+            </div>
+
+            <!-- Credit card FIeld -->
+            <div class="form-group">
+                <label for="creditcard">Credit Card: (16 digits, optional spaces or dashes )</label>
+                <input type="text" id="creditcard" name="creditcard">
+                <div class="error" id="creditcardError"> Please enter valid 16 digit credit card number</div>
+            </div>
+
+            <!--  -->
+            <button type="submit">Submit form</button>
+            
+
+    </form>
+    <div class="success-message" id="successMessage">
+        Form Submittes successfully! all validation passed
+    </div>
+</body>
+</html>

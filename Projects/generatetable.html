@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Multiplication Table of any input number by the user</title>
+    <link rel="stylesheet" href="table.css">
+</head>
+<body>
+    <div class="container">
+    <h1>Multiplication Table Generator </h1>
+    <p>Enter The Number to see its multiplication Table</p>
+    <input type="number" id="numberid" name="numberid" placeholder="Enter any number">
+    <button onclick="generateTable()"> Generate Table</button> 
+    <div id="tableOutput">To Output the table number</div>
+
+
+<!-- Create a function in js to compute the table of any given number -->
+    <script>
+
+        // Function generateTable() to compute the table of input number until 10.
+        function generateTable(){
+            // create a variable which will hold the user Value entered in the input tag
+            const tableNum = document.getElementById("numberid").value;
+            const table_Number= parseInt(tableNum);
+            tableOutput.innerHTML = '';
+            
+            let i=1; 
+            let product =1;
+            while( i<=10){
+                // let product=tableNum * i;
+                product += `<p>${table_Number} * ${i} = ${table_Number * i}</p>`
+                // console.log("The table of ", tableNum +" * ", + i + " = " + product );
+                i++;
+            }
+            tableOutput.innerHTML = product;
+        }
+    </script>
+    </div>
+</body>
+</html>

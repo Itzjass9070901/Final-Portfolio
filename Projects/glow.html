@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glowing Text Adjuster</title>
+  <style>
+    
+    #glowText {
+      font-size: 40px;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+      text-shadow: 0 0 10px #00ff00;
+      transition: all 0.3s ease;
+      background-color: black;
+      padding: 20px;
+      width: fit-content;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <label for="glowIntensity">Glow Intensity:</label>
+  <input type="range" id="glowIntensity" min="0" max="50" value="10"><br>
+
+  <label for="letterSpacing">Letter Spacing:</label>
+  <input type="range" id="letterSpacing" min="0" max="20" value="0"><br>
+
+  <label for="glowColor">Glow Color:</label>
+  <input type="color" id="glowColor" value="#00ff00"><br>
+
+  <div id="glowText">Glowing Text!</div>
+
+  <script>
+    function updateGlow() {
+      const glowSize = document.getElementById('glowIntensity').value + 'px';
+      const letterSpace = document.getElementById('letterSpacing').value + 'px';
+      const glowColor = document.getElementById('glowColor').value;
+      const text = document.getElementById('glowText');
+
+      text.style.textShadow = `0 0 ${glowSize} ${glowColor}`;
+      text.style.letterSpacing = letterSpace;
+    }
+
+    document.getElementById('glowIntensity').addEventListener('input', updateGlow);
+    document.getElementById('letterSpacing').addEventListener('input', updateGlow);
+    document.getElementById('glowColor').addEventListener('input', updateGlow);
+  </script>
+</body>
+</html>

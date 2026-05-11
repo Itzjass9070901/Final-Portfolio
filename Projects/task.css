@@ -1,0 +1,99 @@
+/* Basic Reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+.container{
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+}
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+.input-section{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#task-input{
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+}
+#add-button{
+    color: white;
+    background-color: #4caf04;
+    cursor: pointer;
+    font-size: 16px;   
+}
+
+.task-list{
+    list-style-type: none;
+}
+
+.task-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 8px;
+}
+.task-text{
+    flex:1;
+    margin-left: 10px;
+}
+
+.clear-all{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #ff9800;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.no-tasks{
+    text-align: center;
+    color: #888;
+    font-size: italic;
+    padding: 20px;
+}
+
+.status-bar{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 15px;
+    font-size: 14px;
+    color: #666;
+
+}
+
+.delete-btn
+{
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+    
+}
+
+.completed{
+    text-decoration: line-through;
+    color: #888;
+    
+}

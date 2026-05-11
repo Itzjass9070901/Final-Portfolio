@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Search System</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+            width: 300px;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #357ae8;
+        }
+        .item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+        .hidden {
+            display: none;
+        }
+        #noResultsMessage {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Products Search</h1>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search products or prices (approximate matches)...">
+        <button id="searchButton">Search</button>
+    </div>
+
+    <div id="results">
+        <div class="item" data-name="laptop" data-description="Powerful laptop with 16GB RAM" data-price="999">
+            <h3>Laptop</h3>
+            <p>Powerful laptop with 16GB RAM</p>
+            <p>Price: $999</p>
+        </div>
+
+        <div class="item" data-name="smartphone" data-description="Latest smartphone with great camera" data-price="699">
+            <h3>SmartPhone</h3>
+            <p>Latest smartphone with great camera</p>
+            <p>Price: $699</p>
+        </div>
+
+        <div class="item" data-name="tablet" data-description="10-inch tablet perfect for entertainment" data-price="349">
+            <h3>Tablet</h3>
+            <p>10-inch tablet perfect for entertainment</p>
+            <p>Price: $349</p>
+        </div>
+
+        <div class="item" data-name="headphones" data-description="Noise cancelling wireless headphones" data-price="199">
+            <h3>Headphones</h3>
+            <p>Noise cancelling wireless headphones</p>
+            <p>Price: $199</p>
+        </div>
+
+        <div class="item" data-name="smartwatch" data-description="Fitness tracking smartwatch" data-price="249">
+            <h3>Smartwatch</h3>
+            <p>Fitness tracking smartwatch</p>
+            <p>Price: $249</p>
+        </div>
+
+        <p id="noResultsMessage" class="hidden">No products found.</p>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const items = document.querySelectorAll('.item');
+        const noResults = document.getElementById('noResultsMessage');
+
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            let found = false;
+
+            items.forEach(item => {
+                const itemName = item.getAttribute('data-name').toLowerCase();
+                const itemDescription = item.getAttribute('data-description').toLowerCase();
+                const itemPrice = item.getAttribute('data-price');
+
+                if (
+                    itemName.includes(searchTerm) ||
+                    itemDescription.includes(searchTerm) ||
+                    (isNumericSearch(searchTerm) && matchesPrice(itemPrice, searchTerm))
+                ) {
+                    item.classList.remove('hidden');
+                    found = true;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            noResults.classList.toggle('hidden', found);
+        }
+
+        function isNumericSearch(term) {
+            return /\d/.test(term); // Return true if the term contains at least one digit
+        }
+
+        function matchesPrice(price, term) {
+            const cleanTerm = term.replace(/[$€£]/g, '');
+            if (!isNaN(cleanTerm) && cleanTerm !== '') {
+                const searchNumber = parseFloat(cleanTerm);
+                const itemPrice = parseFloat(price);
+                const lowerBound = searchNumber * 0.8;
+                const upperBound = searchNumber * 1.2;
+                return itemPrice >= lowerBound && itemPrice <= upperBound;
+            }
+            return false;
+        }
+
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', function (event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+        searchInput.addEventListener('input', performSearch);
+    </script>
+</body>
+</html>
+
+
+<!-- Answers for the fill in the blank
+    
+    The constant searchInput refers to the input element.
+
+To make our search case-insensitive, we convert the search term to lowercase.
+
+We use the trim() method to remove whitespace from the beginning and end of the search term.
+
+The hidden CSS class is used to hide products that don't match the search criteria.
+
+We use /\d/ to check if a string contains at least one digit.
+
+In our code, we allow price matches within 20 percent of the search value.
+
+The parseFloat() function is used to convert strings to a floating-point number.
+
+The event listener that enables real-time search as the user types uses the input event.
+
+The regular expression /[$€£]/g is used to remove currency symbols from the search term.
+
+The function performSearch is called when the user clicks the search button.
+
+The expression searchNumber * 0.8 calculates the lower bound of the price range.
+
+The data-name and data-description attributes are accessed using the getAttribute() method. -->

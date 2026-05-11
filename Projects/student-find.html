@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Student Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result-box {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Finder</h2>
+        <div class="search-box">
+            <input type="number" id="studentId" placeholder="Enter Student ID">
+            <button onclick="findStudent()">Search</button>
+        </div>
+        <div class="result-box" id="result"></div>
+    </div>
+    
+    <script>
+        const students = [
+            { id: 1, name: "Emma", grade: "A", subject: "Math" },
+            { id: 2, name: "James", grade: "B", subject: "Science" },
+            { id: 3, name: "Sofia", grade: "A", subject: "History" },
+            { id: 4, name: "Lucas", grade: "C", subject: "English" }
+        ];
+
+        function findStudent() {
+            const searchId = Number(document.getElementById('studentId').value);
+            const foundStudent = students.find(student => student.id === searchId);
+            const resultDiv = document.getElementById('result');
+            
+            if (foundStudent) {
+                resultDiv.innerHTML = `
+                    <h3>Student Found!</h3>
+                    <p>Name: ${foundStudent.name}</p>
+                    <p>Grade: ${foundStudent.grade}</p>
+                    <p>Subject: ${foundStudent.subject}</p>
+                `;
+            } else {
+                resultDiv.innerHTML = "<p>No student found with that ID.</p>";
+            }
+        }
+    </script>
+</body>
+</html>
