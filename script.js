@@ -1,3 +1,4 @@
+// MAIN PARTICLE BACKGROUND
 const canvas = document.createElement("canvas");
 document.body.appendChild(canvas);
 const ctx = canvas.getContext("2d");
@@ -42,6 +43,11 @@ function update() {
 
 setInterval(draw, 20);
 
+// Resize canvas on window resize
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
 
 // LOADING SCREEN PARTICLES
 const loaderCanvas = document.getElementById("loaderCanvas");
@@ -86,6 +92,10 @@ function updateLoaderParticles() {
 
 setInterval(drawLoaderParticles, 20);
 
+window.addEventListener("resize", () => {
+  loaderCanvas.width = window.innerWidth;
+  loaderCanvas.height = window.innerHeight;
+});
 
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
@@ -95,5 +105,5 @@ window.addEventListener("load", () => {
     setTimeout(() => {
       loader.style.display = "none";
     }, 800);
-  }, 3000); // 3000ms = 3 seconds
+  }, 3000);
 });
